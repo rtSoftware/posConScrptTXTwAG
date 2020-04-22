@@ -94,7 +94,7 @@ ggsA = {sCpa1,indControl}[{sCpa1,indControl}]; ToClipboard(ggsA); gapA[1] = ggsA
 IF bCpa1 THEN ListDeleteAll({sCpa1,indControl})  // Limpia contenido del control
 
 // -------------------- particular --------------------
-IF ggsDash_Nombre = "" THEN ggsDash_Nombre = INIRead("cfg","DASH","",ggsIni)
+IF ggsDash_Nombre = "" THEN ggsDash_Nombre = INIRead("cfg","DASH","DASH_1",ggsIni)
 // -------------------- particular --------------------
 
 // Funcionalidad extendida (solo codigo, imposible en modo parametros)

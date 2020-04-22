@@ -2,8 +2,8 @@
 
 
 
-IF ggsDash_Nombre = "" THEN ggsDash_Nombre = INIRead("cfg","DASH","",ggsIni); bCpa1 = False
 IF ggsDash_Nombre = "" THEN
+	ggsDash_Nombre = "DASH_1"
 	Input("Nombre control: DASH ?",ggsDash_Nombre)
 	IF ggsDash_Nombre = "" THEN
 		Error("X no definido DASH en ini..."); RETURN

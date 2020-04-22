@@ -16,9 +16,6 @@
 EXTERN ".\zzW\Z\DebugEjecuta.wl"
 
 ggsA = "IW_recibo"  // Widget (INI: [cfg]DASH=WIN_MAIN.DASH1)
-//EXTERN ".\zzW\Z\IW_EXIST.wl"
-// Dentro de un 2do compilado no puede ir un EXTERN
-IF ggsDash_Nombre = "" THEN ggsDash_Nombre = INIRead("cfg","DASH","",ggsIni); bCpa1 = False
 IF ggsDash_Nombre = "" THEN Error("X no definido DASH en ini..."); RETURN
 IF ggsA = "" THEN Error("X no definido Widget..."); RETURN   // ggsA = "IW_grafica"
 
