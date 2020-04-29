@@ -44,4 +44,19 @@ Capacitando a su equipo de desarrollo quien debe contar con conocimientos MINIMO
 >Training basic skils emploeys of your own
 
 
-# Historia Versión
+# **Historia Versión**
+
+# 200429
+> Clase T con metodos: ARBO,AVIS,CALE,CHEC,CHEK,COMB,FOTO,GANT,HOCA,HOJA,LIST,PLAN,RADI,TABL,TODO,TRAC,TRAK,TREE,VIDE,WORD
+# 200426
+> Ceado metodo: Q.Define(CIA:XX,DB:FIC,CX:F) que se llama al inicio de la APL cuando no existe INI
+> Se remodelo IWgra (componente Graficas)
+# 200425
+>Corregido formacion gapA en Ejecuta_INICIO de cadena unica Ejecuta("ABRE;SKU")
+# 200424
+>Centralizado anlisis cambios TEMPORALES Cia, Drive(DB) y conexion(DB4) en
+[WIN.ABRE]>Ejecuta_INICIO
+>Eliminacion procesos param_CHEC, param_COMB y param_RADI
+>Creacion METODO: CHEC, COMB y RADI
+# 200423
+>Normalizacion metodo ZALI

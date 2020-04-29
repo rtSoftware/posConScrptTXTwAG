@@ -84,14 +84,8 @@ ggsA = {sCpa1,indControl}[{sCpa1,indControl}]; ToClipboard(ggsA); gapA[1] = ggsA
 IF bCpa1 THEN ListDeleteAll({sCpa1,indControl})  // Limpia contenido del control
 
 // -------------------- particular --------------------
-sCpa2 = gestoyEn+"."+INIRead("cfg","DASH","",ggsIni)
-IF sCpa2 = "" THEN
-  // Widget (INI: [cfg]DASH=WIN_MAIN.DASH1)
-  sCpa2 = ""; Input("Nombre del VENTANA.DASH ?",sCpa2)
-  IF sCpa2 = "" THEN Error("Imposible continuar sin nombre Ventana.Dash"); RETURN
-
-  INIWrite("cfg","DASH",sCpa2,ggsIni)
-END
+IF ggsDash_Nombre = "" THEN Error("X Imposible continuar sin definir DASH"); EndProgram()
+sCpa2 = ggsDash_Nombre
 sCpa3 = ""  // Asegura
 // -------------------- particular --------------------
 

@@ -65,6 +65,7 @@ SWITCH gapA[1]
 		{sCTL}..Caption = ggsCia+" / "+ggsDB+" / "+ggsDB_WS_SP4L
 
     // Intranet ...
+    Error("Remodelar 4222005")
     IF ggsDB_WS_SP4L = "I" THEN
         sIntraNet is string = fSelectDir(fCurrentDir(), "Directorios...", "Seleccione...")
         IF sIntraNet = "" THEN
@@ -131,9 +132,18 @@ SWITCH gapA[1]
 		//END
 
 	CASE "BTN_1Q"
-		sQ is string
-		Input("comando Q ?",sQ); IF sQ <> "" THEN Ejecuta("F",sQ)
-		Info("Responde ...","",sQ)
+    sQ is string
+    IF YesNo("Lanza Q ?") THEN
+      ggsA = "comando Q ?" // Input(ggsA,sQ) <-- no script
+      Input("comando Q ?",sQ)
+     ELSE
+      ggsA = "comando T ?"
+      Input("comando T ?",sQ)
+     END
+    IF sQ <> "" THEN
+      IF ggsA = "comando Q ?" THEN Ejecuta("F",sQ) ELSE Ejecuta("T",sQ)
+      Info("Responde ...","",sQ,ggsRespuesta)
+    END
 //		IF sQ = "XFIC" THEN EndProgram()
 
 ////////////////////////// TODAS LAS CAPAS /////////////////////////

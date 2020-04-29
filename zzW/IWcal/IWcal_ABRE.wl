@@ -51,10 +51,10 @@ SWITCH gapA[1]
 		END
 		EDT_clave..Caption = ""; EDT_clave = "" // importante...
 		//EXTERN ".\zzW\Z\Ejecuta_CONCLUYE.wl"
-	CASE ~~"CHEC": gnCapa = 7; Ejecuta(gapA[1])  //EXTERN ".\zzW\Z\param_CHEC.wl"
-	CASE ~~"COMB": gnCapa = 5; Ejecuta(gapA[1])  //EXTERN ".\zzW\Z\param_COMB.wl"
+	CASE ~~"CHEC": gnCapa = 7; Ejecuta(gapA[1])	//424
+	CASE ~~"COMB": gnCapa = 5; Ejecuta(gapA[1])	//424
 	CASE ~~"FUNCIONES": {gestoyEn,indWindow}..Plane = 3
-	CASE ~~"RADI": gnCapa = 6; Ejecuta(gapA[1])  //EXTERN ".\zzW\Z\param_RADI.wl"
+	CASE ~~"RADI": gnCapa = 6; Ejecuta(gapA[1])	//424
 	CASE ~~"TOOLS": {gestoyEn,indWindow}..Plane = 2
 	OTHER CASE: Error(gapA[1]+" tarea (2002292003) no definida en "+sCompilaTXT); RETURN
 END

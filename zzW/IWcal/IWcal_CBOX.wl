@@ -43,7 +43,6 @@ SWITCH ggsA
       ggsA2 = ""; Input("Clave2 ?",ggsA2)
 
       //// Solo para efectos DEMO ----------------------------------
-      ArrayDeleteAll(ggArrEjecuta)  // Importante ! (inicia super proceso)
       Ejecuta("ABRE","RADI;Modo ABRE;Modo WL;ABRE~CLAVE~"+ggsA1+"~"+ggsA2+";ABRE~TOOLS")
       RETURN
       //// Solo para efectos DEMO ----------------------------------
@@ -62,21 +61,32 @@ SWITCH ggsA
     END
   CASE ~~"COMB"
     ToClipboard("Ejecuta("+gsCas+"COMB"+gsCas+","+gsCas+"Op_1;Op 2;Op_3"+gsCas+")")
-    IF YesNo("Sintaxis:","     Ejecuta(ABRE,COMB;Op_1;Op_2;Op_3","     Ejecuta(COMB,Op_1;Op 2;Op_3)","","Presenta ?") THEN
-      //Ejecuta("ABRE","COMB;Op_1;Op_2;Op_3") // correcto tambien
+    IF YesNo("Sintaxis:","     Ejecuta(COMB;Op_1;Op_2;Op_3 ;FIND~[param1])","     Ejecuta(COMB,Op_1;Op 2;Op_3)","","Presenta ?") THEN
+      //Ejecuta("ABRE","COMB;Op_1;Op_2;Op_3") // (compativiliad)
       Ejecuta("COMB","Op_1;Op 2;Op_3")
+        //Ejecuta("COMB","Op_1;Op 2;Op_3 ;TEST~") // regresa a TEST en ZALI... Ejecuta(TEST)
+        //Ejecuta("COMB","Op_1;Op 2;Op_3 ;TEST~param1") // en ZALI: Ejecuta(TEST,param1)
+        //Ejecuta("COMB","Op_1;Op 2;Op_3 ;TEST~param1~param2") // Incorrecto
     END
+    // remodelar todos los ABRE.COMB
+    // crear todos los ZALI para las IW_xxx
+    // remodelar Todos los COMB,CHEC y RADI
+    // ajustar MOTOR IW_xxx.wl
   CASE ~~"CHEC"
     ToClipboard("Ejecuta("+gsCas+"CHEC"+gsCas+","+gsCas+"Op_1;Op 2;Op_3"+gsCas+")")
-    IF YesNo("Sintaxis:","     Ejecuta(ABRE,CHEC;Op_1;Op_2;Op_3","     Ejecuta(CHEC,Op_1;Op 2;Op_3)","","Presenta ?") THEN
+    IF YesNo("Sintaxis:","     Ejecuta(CHEC;Op_1;Op_2;Op_3;TEST~)","     Ejecuta(CHEC,Op_1;Op 2;Op_3)","","Presenta ?") THEN
       //Ejecuta("ABRE","CHEC;Op_1;Op_2;Op_3") // solo con parametros incluidos
-      Ejecuta("CHEC","Op_1;Op 2;Op_3")  // WL
+      //Ejecuta("CHEC","Op_1;Op 2;Op_3;TEST~")
+      //Ejecuta("CHEC;Op_1;Op 2;Op_3;TEST~")
+      Ejecuta("CHEC","Op_1;Op 2;Op_3;TEST~")
     END
   CASE ~~"RADI"
     ToClipboard("Ejecuta("+gsCas+"RADI"+gsCas+","+gsCas+"Op_1;Op 2;Op_3"+gsCas+")")
-    IF YesNo("Sintaxis:","     Ejecuta(ABRE,RADI;Op_1;Op_2;Op_3","     Ejecuta(RADI,Op_1;Op 2;Op_3)","","Presenta ?") THEN
-      //Ejecuta("ABRE","RADI;Op_1;Op_2;Op_3") // correcto tambien
-      Ejecuta("RADI","Op_1;Op 2;Op_3")
+    IF YesNo("Sintaxis:","     Ejecuta(RADI;Op_1;Op_2;Op_3;TEST~[param1]","     Ejecuta(RADI,Op_1;Op 2;Op_3)","","Presenta ?") THEN
+      //ggsAccion = "EI"  // prende debug en Ejecuta_INICIO
+      //Ejecuta("ABRE","RADI;Op_1;Op_2;Op_3;TEST~") // correcto tambien pero en DES USO
+      //Ejecuta("RADI","Op_1;Op 2;Op_3;TEST~")
+      Ejecuta("RADI;Op_1;Op 2;Op_3;TEST~paramAlgo")
     END
   CASE ~~"TREE"
     ToClipboard("Ejecuta("+gsCas+"ABRE"+gsCas+","+gsCas+"TREE"+gsCas+")")

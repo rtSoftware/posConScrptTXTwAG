@@ -27,67 +27,45 @@ EXTERN ".\zzW\Z\DebugEjecuta.wl"
 {gestoyEn,indWindow}..Plane = 7
 sCpa1 = "CBOX_1"
 
+IF nDebug = Today() THEN Info("FORMA/SELECCIONA...","(num de param)gapA="+ArrayCount(gapA),"gapA[2]="+gapA[2])
+
 // F O R M A
-IF {sCpa1,indControl}[1]..Caption = "Option 1" THEN
+// Mas de un parametro FORMA, uno Selecciona
+IF gapA[2] <> "" THEN
   //      Elimina Checks actuales
   WHILE CheckBoxCount({sCpa1,indControl}) > 1
     CheckBoxDelete({sCpa1,indControl},CheckBoxCount({sCpa1,indControl}))
   END
   IF CheckBoxCount({sCpa1,indControl}) = 0 THEN CheckBoxAdd({sCpa1,indControl},"") // sobra ?
 
-  IF ArrayCount(gapA) > 0 THEN
-    // P A R A M E T R O S    Ejecuta("CHEC","a;e;i")   Ejecuta("ABRE","CHEC","CHEC;a;e;i")
-    // Forma 1er elemento
-    {sCpa1,indControl}[1]..Caption = gapA[1]
-    nN is int
-    FOR nN = 2 _TO_ ArrayCount(gapA)
-      IF Left(Upper(gapA[nN]),3) = "CHE" THEN CONTINUE
-      IF Left(gapA[nN],1) = "*" THEN gapA[nN] = Right(gapA[nN],Length(gapA[nN])-1)
-      IF Contains(gapA[nN],"~") THEN CONTINUE // param CONCLUYE
-      CheckBoxAdd({sCpa1,indControl},gapA[nN])
-    END
-  ELSE
-    // C O D I G O      Ejecuta("CHEC")
-    ////////////////////////////////////////////////////////////////////////
-    // Escriba aqui CODIGO para formar Lista si no invoca con PARAMETROS...
-    //                        Ejecuta("CBOS")
-    ////////////////////////////////////////////////////////////////////////
-    {sCpa1,indControl}[1]..Caption = "nada"  // 1er elemento
-    //CheckBoxAdd({sCpa1,indControl},"Opcion_1")
-    //CheckBoxAdd({sCpa1,indControl},"Opcion_2")
-
-    //CheckBoxAdd({sCpa1,indControl},"Opcion_n")
+  // P A R A M E T R O S    Ejecuta("CHEC","a;e;i")   Ejecuta("ABRE","CHEC","CHEC;a;e;i")
+  // Forma 1er elemento
+  {sCpa1,indControl}[1]..Caption = gapA[1]
+  nCHE is int
+  FOR nCHE = 2 _TO_ ArrayCount(gapA)
+    IF nDebug = Today() THEN Info(nCHE , gapA[nCHE] ,"", gapA[2],CheckBoxCount({sCpa1,indControl}) )
+    IF Left(Upper(gapA[nCHE]),3) = "CHE" THEN CONTINUE
+    IF Left(gapA[nCHE],1) = "*" THEN gapA[nCHE] = Right(gapA[nCHE],Length(gapA[nCHE])-1)
+    IF Contains(gapA[nCHE],"~") THEN CONTINUE // param CONCLUYE
+    IF gapA[nCHE] <> "" CheckBoxAdd({sCpa1,indControl},gapA[nCHE])
   END
-
 
   {sCpa1,indControl} = 1 // cursor en el primer elemento
   RETURN
-END
+ELSE
+  // S E L E C C I O N //	Ejecuta("CHEC")	// codigo wl
+  ggsRespuesta = ""
+  nCHE1 is int
+  FOR nCHE1 = 1 _TO_ CheckBoxCount({sCpa1,indControl})
+    IF nDebug = Today() THEN Info(sCpa1,"",{sCpa1,indControl}[nCHE1],{sCpa1,indControl}[nCHE1]..Caption)
+    IF {sCpa1,indControl}[nCHE1] THEN
+      ggsRespuesta = ggsRespuesta + {sCpa1,indControl}[nCHE1]..Caption + ";"
+    END
 
-
-
-// S E L E C C I O N
-////////////////////////////////////////////////////////
-// 		en BTN_xxx
-//IF fFileExist(".\zzW\IWcal\IWcal_CHEC.wl" ) THEN
-//	Ejecuta("CHEC")	// codigo wl
-//ELSE
-//	Ejecuta("ABRE","CHEC")
-//END
-////////////////////////////////////////////////////////
-ggsA = ""
-nN is int
-FOR nN = 1 _TO_ CheckBoxCount({sCpa1,indControl})
-  IF {sCpa1,indControl}[nN] THEN
-    ggsA = ggsA + {sCpa1,indControl}[nN]..Caption + ";"
+    IF nDebug = Today() THEN Info({sCpa1,indControl}[nCHE1]..Caption,{sCpa1,indControl}[nCHE1],{sCpa1,indControl}[nCHE1]..Value,ggsA)
   END
+  IF ggsRespuesta <> "" THEN ggsRespuesta = Left(ggsRespuesta,Length(ggsRespuesta)-1)
+  ToClipboard(ggsRespuesta)
 
-  //Info({sCpa1,indControl}[nN]..Caption,{sCpa1,indControl}[nN],{sCpa1,indControl}[nN]..Value,ggsA)
+  Ejecuta("ZALI","CONCLUYE_SELECCION")  //424
 END
-IF ggsA <> "" THEN ggsA = Left(ggsA,Length(ggsA)-1)
-
-// Respuesta
-ToClipboard(ggsA); gapA[1] = ggsA
-// Deja limpio el control para ser usado nuevamente...
-{sCpa1,indControl}[1]..Caption = "Option 1"
-//EXTERN ".\zzW\Z\Ejecuta_CONCLUYE.wl"

@@ -54,7 +54,7 @@ SWITCH gapA[1]
 		{gestoyEn,indWindow}..Plane = 10 // capa
 
 		sSelec is string = ggsA	// regresa seleccion de varias opciones en SWITCH gapA[1]...
-		ArrayDeleteAll(ggArrEjecuta);ggsA = ""  // Inicializa ciclo
+		ggsA = ""  // Inicializa ciclo
 
 		IF sSelec IN ("BROWSER","EDT_Text","EDT_RTF","WORD") THEN Ejecuta("ABRE",ggsA)
 		IF sSelec = "IMAG" THEN
@@ -63,7 +63,6 @@ SWITCH gapA[1]
 			RETURN
 		END
 		IF gapA[2] = "OPCIONES" THEN
-			ArrayDeleteAll(ggArrEjecuta)  // Inicializa ciclo
 			// ABRE~IMAG hace que regrese a IMAG con seleccin en ggsA  de RADI
 			ggsA = "NADA"
 			Ejecuta("ABRE","BROWSER;RADI;EDT_Text;EDT_RTF;IMAG;WORD;ABRE~IMAG")
@@ -79,7 +78,7 @@ SWITCH gapA[1]
 
 	CASE ~~"TEST"
 		sSelec is string = ggsA	// regresa seleccion de varias opciones en SWITCH gapA[1]...
-		ArrayDeleteAll(ggArrEjecuta);ggsA = ""  // Inicializa ciclo
+		ggsA = ""  // Inicializa ciclo
 
 		IF sSelec NOT IN ("Browser","comb","chec","radi","EDT_Text","EDT_HTML","EDT_RTF","IMAG","WORD") THEN
 			// ABRE~TEST hace que regrese a TEST con seleccin en ggsA de COMB

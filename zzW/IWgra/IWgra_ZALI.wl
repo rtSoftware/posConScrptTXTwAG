@@ -4,7 +4,7 @@
 
 //Ejecuta("ZALI"[,"tarea"])
 /////////////////////////////////////////////////////////////////////////
-// Flujo:   
+// Flujo:
 //
 /////////////////////////////////////////////////////////////////////////
 // nDebug = Today()
@@ -12,10 +12,14 @@
 // 		SI: INIRead("cfg","Debug","",ggsIni) = sCompilaTXT
 EXTERN ".\zzW\Z\DebugEjecuta.wl"
 
-SWITCH {gestoyEn,indWindow}..Plane
-	CASE 1
+SWITCH gapA[1]
+  CASE "CONCLUYE_SELECCION"
 
-	OTHER CASE: Error(gapA[1]+" es una capa inexistente en "+sCompilaTXT); Close()
+	OTHER CASE
+		SWITCH {gestoyEn,indWindow}..Plane
+			CASE 1
+			OTHER CASE: Error(gapA[1]+"<-- Tarea no definido ("+gestoyEn+" - 327463) metodo: ZALI parametros: "+gapA[2])
+		END
 END
 
 
