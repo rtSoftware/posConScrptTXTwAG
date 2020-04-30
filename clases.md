@@ -9,7 +9,7 @@ Despliega lista en forma de árbol con parámetros como ramas
 
 Despliega mensaje cualquier tamaño. Permite regresar un cometario al autor
 Pulsa imagen para cerrar
-![imagein AVISO](https://github.com/rtSoftware/wAG/blob/master/IMAGENES/AVISO.jpg)
+![imagein AVISO](https://github.com/rtSoftware/posConScrptTXTwAG/blob/master/IMAGENES/aviso.jpg)
 
 ### método: CALE 
 >Ejecuta("CALE_A")
@@ -23,7 +23,7 @@ Día seleccionado en clipboard y variable ggsRespuesta
 >Ejecuta("CHEK","param1;param2;paramN")
 
 Presenta lista de selección multiple con opciones: param1,param2... paramN
-![imagein CHECK](https://github.com/rtSoftware/wAG/blob/master/IMAGENES/CHECK.jpg)
+![imagein CHECK](https://github.com/rtSoftware/posConScrptTXTwAG/blob/master/IMAGENES/check.jpg)
 
 ### método: COMB
 >Ejecuta("COMB","param1;param2;paramN")
@@ -66,7 +66,7 @@ Presenta un control tipo LISTA para seleccionar un elemento donde opciones: para
 >Ejecuta("RADI","param1;param2;paramN")
 
 Presenta un control tipo RADIO BOTONES para seleccionar un elemento donde opciones: param1,param2... paramN
-![imagein RADIO](https://github.com/rtSoftware/wAG/blob/master/IMAGENES/RADIO.jpg)
+![imagein RADIO](https://github.com/rtSoftware/posConScrptTXTwAG/blob/master/IMAGENES/radio.jpg)
 
 
 
